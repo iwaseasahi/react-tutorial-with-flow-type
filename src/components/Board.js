@@ -4,12 +4,36 @@ import React from 'react';
 
 import Square from './Square'
 
-class Board extends React.Component {
-  renderSquare(i) {
-    return <Square value={i} />;
+type Props = {};
+
+type State = {
+  squares: Array<?string>
+};
+
+class Board extends React.Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      squares: Array(9).fill(null),
+    };
   }
 
-  render() {
+  handleClick(i: number) {
+    const squares = this.state.squares.slice();
+    squares[i] = 'X';
+    this.setState({squares: squares});
+  }
+
+  renderSquare(i: number): React$Element<typeof Square> {
+    return (
+      <Square
+        value={this.state.squares[i]}
+        onClick={() => this.handleClick(i)}
+      />
+    );
+  }
+
+  render(): React$Element<"div"> {
     const status = 'Next player: X';
 
     return (

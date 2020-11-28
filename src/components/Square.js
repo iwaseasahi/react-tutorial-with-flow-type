@@ -4,33 +4,18 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 type Props = {
-  value: number
+  value: ?string,
+  onClick: () => void
 };
 
-type State = {
-  value: ?string
-};
-
-class Square extends React.Component<Props, State> {
-
-  constructor(props: Props) {
-    super(props);
-    this.state = {
-      value: null
-    };
-  }
-
+class Square extends React.Component<Props> {
   render(): React$Element<"button"> {
-    const {
-      value,
-    } = this.state;
-
     return (
       <button
         className="square"
-        onClick={() => this.setState({value: 'X'})}
+        onClick={() => this.props.onClick()}
       >
-        {value}
+        {this.props.value}
       </button>
     );
   }
