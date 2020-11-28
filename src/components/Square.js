@@ -8,17 +8,12 @@ type Props = {
   onClick: () => void
 };
 
-class Square extends React.Component<Props> {
-  render(): React$Element<"button"> {
-    return (
-      <button
-        className="square"
-        onClick={() => this.props.onClick()}
-      >
-        {this.props.value}
-      </button>
-    );
-  }
+function Square(props: Props): React$Element<"button"> {
+  return (
+    <button className="square" onClick={props.onClick}>
+      {props.value}
+    </button>
+  );
 }
 
 export default Square;
