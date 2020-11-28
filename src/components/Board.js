@@ -3,6 +3,7 @@
 import React from 'react';
 
 import Square from './Square'
+import calculateWinner from '../helpers/CalculateWinner'
 
 type Props = {};
 
@@ -39,7 +40,13 @@ class Board extends React.Component<Props, State> {
   }
 
   render(): React$Element<"div"> {
-    const status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+    const winner = calculateWinner(this.state.squares);
+    let status;
+    if (winner) {
+      status = 'Winner: ' + winner;
+    } else {
+      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+    }
 
     return (
       <div>
