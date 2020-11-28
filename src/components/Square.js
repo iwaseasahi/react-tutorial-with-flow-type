@@ -7,18 +7,29 @@ type Props = {
   value: number
 };
 
-class Square extends React.Component<Props> {
+type State = {
+  value: ?string
+};
+
+class Square extends React.Component<Props, State> {
+
   constructor(props: Props) {
     super(props);
+    this.state = {
+      value: null
+    };
   }
 
   render(): React$Element<"button"> {
     const {
       value,
-    } = this.props;
+    } = this.state;
 
     return (
-      <button className="square">
+      <button
+        className="square"
+        onClick={() => this.setState({value: 'X'})}
+      >
         {value}
       </button>
     );
