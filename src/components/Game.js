@@ -28,9 +28,9 @@ class Game extends React.Component<Props, State> {
   }
 
   handleClick(i: number) {
-    const history = this.state.history.slice(0, this.state.stepNumber + 1);
-    const current = history[history.length - 1];
-    const squares = current.squares.slice();
+    const history: Array<Object> = this.state.history.slice(0, this.state.stepNumber + 1);
+    const current: Object = history[history.length - 1];
+    const squares: Array<string | null> = current.squares.slice();
     if (calculateWinner(squares) || squares[i]) {
       return;
     }
@@ -54,11 +54,11 @@ class Game extends React.Component<Props, State> {
   }
 
   render(): React$Element<"div"> {
-    const history = this.state.history;
-    const current = history[this.state.stepNumber];
-    const winner = calculateWinner(current.squares);
+    const history: Array<Object> = this.state.history;
+    const current: Object = history[this.state.stepNumber];
+    const winner: null | string = calculateWinner(current.squares);
 
-    const moves = history.map((step, move) => {
+    const moves: Array<React$Element<"li">> = history.map((step, move) => {
       const desc = move ?
         'Go to move #' + move :
         'Go to game start';
@@ -69,7 +69,7 @@ class Game extends React.Component<Props, State> {
       );
     });
 
-    let status;
+    let status: string;
     if (winner) {
       status = 'Winner: ' + winner;
     } else {
