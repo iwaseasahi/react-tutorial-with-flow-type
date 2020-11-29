@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-function CalculateWinner(squares: Array<?string>): null | string {
+function CalculateWinner(squares: Array<string | null>): null | string {
   const lines = [
     [0, 1, 2],
     [3, 4, 5],

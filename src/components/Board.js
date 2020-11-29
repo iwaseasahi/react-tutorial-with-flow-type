@@ -8,7 +8,7 @@ import calculateWinner from '../helpers/CalculateWinner'
 type Props = {};
 
 type State = {
-  squares: Array<?string>,
+  squares: Array<string | null>,
   xIsNext: boolean
 };
 
