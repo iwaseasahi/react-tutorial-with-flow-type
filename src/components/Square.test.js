@@ -36,3 +36,27 @@ it("renders with onClick and without a value", () => {
   });
   expect(container.textContent).toBe("");
 });
+
+it("can do onClick", () => {
+  const onClick = jest.fn();
+  act(() => {
+    render(<Square onClick={onClick} />, container);
+  });
+
+  const button = document.querySelector("[data-testid=button]");
+  expect(button.innerHTML).toBe("");
+
+  act(() => {
+    button.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+  });
+
+  expect(onClick).toHaveBeenCalledTimes(1);
+
+  act(() => {
+    for (let i = 0; i < 5; i++) {
+      button.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+    }
+  });
+
+  expect(onClick).toHaveBeenCalledTimes(6);
+});
