@@ -17,22 +17,22 @@ afterEach(() => {
 });
 
 it('renders without crashing', () => {
-  const mockFn = jest.fn(i => i);
-  render(<Square value="X" onClick={mockFn} />, container);
+  const onClick = jest.fn();
+  render(<Square value="X" onClick={onClick} />, container);
 });
 
 it("renders with a value and onClick", () => {
-  const mockFn = jest.fn(i => i);
+  const onClick = jest.fn();
   act(() => {
-    render(<Square value="X" onClick={mockFn} />, container);
+    render(<Square value="X" onClick={onClick} />, container);
   });
   expect(container.textContent).toBe("X");
 });
 
 it("renders with onClick and without a value", () => {
-  const mockFn = jest.fn(i => i);
+  const onClick = jest.fn();
   act(() => {
-    render(<Square onClick={mockFn} />, container);
+    render(<Square onClick={onClick} />, container);
   });
   expect(container.textContent).toBe("");
 });
