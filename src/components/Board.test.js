@@ -34,3 +34,29 @@ it('renders with a value and onClick', () => {
   const board = document.querySelector("[data-testid=board]");
   expect(board.textContent).toBe("X◯");
 });
+
+it("can do onClick", () => {
+  let squares = Array(9).fill(null);
+  squares[0] = "X";
+  const onClick = jest.fn();
+  act(() => {
+    render(<Board squares={squares} onClick={onClick} />, container)
+  });
+
+  const button = document.querySelector("[data-testid=button]");
+  expect(button.innerHTML).toBe("X");
+
+  act(() => {
+    button.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+  });
+
+  expect(onClick).toHaveBeenCalledTimes(1);
+
+  act(() => {
+    for (let i = 0; i < 5; i++) {
+      button.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+    }
+  });
+
+  expect(onClick).toHaveBeenCalledTimes(6);
+});
