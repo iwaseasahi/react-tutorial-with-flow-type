@@ -22,7 +22,7 @@ class Board extends React.Component<Props> {
 
   render(): React$Element<"div"> {
     return (
-      <div>
+      <div data-testid="board">
         <div className="board-row">
           {this.renderSquare(0)}
           {this.renderSquare(1)}
