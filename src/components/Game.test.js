@@ -35,7 +35,7 @@ it('do handleClick', () => {
   expect(square.innerHTML).toBe("X");
 
   const gameInfo = document.querySelector("[data-testid=game-info-next-player]");
-  expect(gameInfo.innerHTML).toBe("Next player: O")
+  expect(gameInfo.innerHTML).toBe("Next player: O");
 
   const gameHistory = document.querySelector("[data-testid=game-info-next-player]");
 });
@@ -59,4 +59,41 @@ it('goes to game start', () => {
   });
 
   expect(square.innerHTML).toBe("");
+});
+
+it('shows winner X', () => {
+  act(() => {
+    render(<Game />, container)
+  });
+
+  const firstSquares = document.querySelector("[data-testid=board-row-first]").children;
+  const secondSquares = document.querySelector("[data-testid=board-row-second]").children;
+  const thirdSquares = document.querySelector("[data-testid=board-row-third]").children;
+
+  act(() => {
+    firstSquares[0].dispatchEvent(new MouseEvent("click", { bubbles: true }));
+  });
+
+  act(() => {
+    firstSquares[1].dispatchEvent(new MouseEvent("click", { bubbles: true }));
+  });
+
+  act(() => {
+    secondSquares[0].dispatchEvent(new MouseEvent("click", { bubbles: true }));
+  });
+
+  act(() => {
+    secondSquares[1].dispatchEvent(new MouseEvent("click", { bubbles: true }));
+  });
+
+  act(() => {
+    thirdSquares[0].dispatchEvent(new MouseEvent("click", { bubbles: true }));
+  });
+
+  act(() => {
+    thirdSquares[1].dispatchEvent(new MouseEvent("click", { bubbles: true }));
+  });
+
+  const gameInfo = document.querySelector("[data-testid=game-info-next-player]");
+  expect(gameInfo.innerHTML).toBe("Winner: X");
 });
