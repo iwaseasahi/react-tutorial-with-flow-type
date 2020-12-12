@@ -64,7 +64,7 @@ class Game extends React.Component<Props, State> {
         'Go to game start';
       return (
         <li key={move}>
-          <button onClick={() => this.jumpTo(move)}>{desc}</button>
+          <button onClick={() => this.jumpTo(move)} data-testid="game-history-button">{desc}</button>
         </li>
       );
     });
@@ -77,15 +77,15 @@ class Game extends React.Component<Props, State> {
     }
 
     return (
-      <div className="game">
+      <div className="game" data-testid="game">
         <div className="game-board">
           <Board
             squares={current.squares}
             onClick={i => this.handleClick(i)}
           />
         </div>
-        <div className="game-info">
-          <div>{status}</div>
+        <div className="game-info" data-testid="game-info">
+          <div data-testid="game-info-next-player">{status}</div>
           <ol>{moves}</ol>
         </div>
       </div>

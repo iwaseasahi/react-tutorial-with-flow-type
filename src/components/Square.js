@@ -12,7 +12,7 @@ function Square(props: Props): React$Element<"button"> {
     <button
       className="square"
       onClick={props.onClick}
-      data-testid="button"
+      data-testid="square"
     >
       {props.value}
     </button>

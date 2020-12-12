@@ -43,18 +43,18 @@ it("can do onClick", () => {
     render(<Board squares={squares} onClick={onClick} />, container)
   });
 
-  const button = document.querySelector("[data-testid=button]");
-  expect(button.innerHTML).toBe("X");
+  const square = document.querySelector("[data-testid=square]");
+  expect(square.innerHTML).toBe("X");
 
   act(() => {
-    button.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+    square.dispatchEvent(new MouseEvent("click", { bubbles: true }));
   });
 
   expect(onClick).toHaveBeenCalledTimes(1);
 
   act(() => {
     for (let i = 0; i < 5; i++) {
-      button.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+      square.dispatchEvent(new MouseEvent("click", { bubbles: true }));
     }
   });
 
